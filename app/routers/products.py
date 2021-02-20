@@ -8,7 +8,7 @@ router = APIRouter()
 
 # tambahkan path operation (contoh: /{id})
 # tags digunakan untuk judul pada dokumentasi API
-# Request adalah package yang berfungsi untuk mengambil semua data dari request yg dibuat. contoh : Ip Client, Endpoint, Header, dll
+# Request berfungsi untuk mengambil semua data dari request yg dibuat. contoh : body, Endpoint, Header, dll
 @router.get("")
 async def action(request: Request):
     return await controller.index(request)
