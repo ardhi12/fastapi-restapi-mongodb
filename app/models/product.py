@@ -4,4 +4,4 @@ from mongoengine import *
 # Class ini akan digunakan mongoengine untuk membuat schema database
 # Model ini juga terdapat validation input, jadi tidak perlu membuat model pydantic lagi
 class Products(Document):
-    name = StringField(max_length=200, required=True)
+    name = StringField(max_length=50, required=True)
