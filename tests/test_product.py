@@ -41,6 +41,22 @@ class TestProduct(TestCase):
         disconnect()
     
     # fungsi untuk test
+    def test_read_all_products(self):                             
+        response = client.get("/products")                
+        assert response.status_code == 200  
+        
+    def test_read_product_with_id(self):                     
+        response = client.get("/products")                
+        
+        res = response.text
+        res = json.loads(res)
+        res = res['datas']        
+        
+        for x in res:
+            response = client.get(f"/products/{x['id']}")                
+            print(response.text)
+            assert response.status_code == 200                    
+    
     def test_insert_product(self):
         name = "Tahu Bulat"
 
@@ -191,4 +207,4 @@ class TestProduct(TestCase):
 
         # delete data        
         response = client.delete(f"/products/{id}")
-        assert response.status_code == 400                
+        assert response.status_code == 400      
