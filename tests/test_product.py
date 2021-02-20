@@ -162,3 +162,33 @@ class TestProduct(TestCase):
 
         product = Products.objects(id=id).first()
         assert product.name == name
+        
+    def test_delete_product(self):
+        # insert 1 data
+        name = "Indomie"        
+        response = client.post("/products", json={"name": name})
+        
+        # get id from response
+        res = response.text
+        res = json.loads(res)
+        id = res['datas']['id']
+
+        # delete data        
+        response = client.delete(f"/products/{id}")
+        assert response.status_code == 200
+        
+        # check product is not available
+        product = Products.objects(id=id).first()
+        assert product is None
+        
+    def test_delete_product_wrong_id(self):
+        # insert 1 data
+        name = "Indomie"        
+        response = client.post("/products", json={"name": name})
+        
+        # get id from response
+        id = str(ObjectId())
+
+        # delete data        
+        response = client.delete(f"/products/{id}")
+        assert response.status_code == 400                
