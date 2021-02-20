@@ -15,7 +15,7 @@ async def action(request: Request):
 
 
 @router.get("/{id}", tags=["products"])
-async def action(id: int):
+async def action(id: str):
     return await controller.show(id)
 
 
