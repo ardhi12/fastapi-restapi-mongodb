@@ -9,26 +9,26 @@ router = APIRouter()
 # tambahkan path operation (contoh: /{id})
 # tags digunakan untuk judul pada dokumentasi API
 # Request adalah package yang berfungsi untuk mengambil semua data dari request yg dibuat. contoh : Ip Client, Endpoint, Header, dll
-@router.get("", tags=["products"])
+@router.get("")
 async def action(request: Request):
     return await controller.index(request)
 
 
-@router.get("/{id}", tags=["products"])
+@router.get("/{id}")
 async def action(id: str):
     return await controller.show(id)
 
 
-@router.post("", tags=["products"])
+@router.post("")
 async def action(request: Request):
     return await controller.store(request)
 
 
-@router.put("/{id}", tags=["products"])
+@router.put("/{id}")
 async def action(id: str, request: Request):
     return await controller.update(id, request)
 
 
-@router.delete("/{id}", tags=["products"])
+@router.delete("/{id}")
 async def action(id: str):
     return await controller.delete(id)
